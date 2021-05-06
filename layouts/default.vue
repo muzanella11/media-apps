@@ -17,6 +17,8 @@
             solo-inverted
             prepend-inner-icon="mdi-magnify"
             class="mr-2"
+            :value="galleryFilters.keyword"
+            @input="setEntryGallery('filters.keyword', $event)"
           ></v-text-field>
         </v-responsive>
 
@@ -55,6 +57,11 @@
 </template>
 
 <script>
+import * as GALLERYTYPES from '~/store-namespace/gallery/types'
+import VuexModule from '~/utils/vuex'
+
+const galleryModule = VuexModule(GALLERYTYPES.MODULE_NAME)
+
 export default {
   data () {
     return {
@@ -65,6 +72,25 @@ export default {
       right: false,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+
+  computed: {
+    ...galleryModule.mapState({
+      galleryFilters: state => state.filters
+    })
+  },
+
+  methods: {
+    ...galleryModule.mapMutations({
+      setGalleryState: GALLERYTYPES.SET_STATE
+    }),
+
+    setEntryGallery (accessor, value) {
+      this.setGalleryState({
+        accessor,
+        value
+      })
     }
   }
 }
