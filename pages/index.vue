@@ -25,16 +25,19 @@
           cols="12"
         >
           <masonry
-            :cols="6"
+            :cols="{default: 6, 1000: 3, 768: 2, 400: 1}"
             :gutter="10"
           >
-            <div
+            <v-lazy
               v-for="(item, index) in entries"
               :key="index"
-              class="landing__masonry-item"
             >
-              <img :src="item.src" width="100%" />
-            </div>
+              <div
+                class="landing__masonry-item"
+              >
+                <img :src="item.src" width="100%" />
+              </div>
+            </v-lazy>
           </masonry>
         </v-col>
       </template>

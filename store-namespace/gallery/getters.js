@@ -18,6 +18,11 @@ export default {
       return a.name.localeCompare(b.name)
     })
 
+    // Sort by index
+    resultData = resultData.sort((a, b) => {
+      return a.index > b.index
+    })
+
     return resultData
   },
 
