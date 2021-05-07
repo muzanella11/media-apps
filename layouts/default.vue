@@ -104,6 +104,7 @@
           <v-col
             v-if="!isSearchActive"
             cols="8"
+            class="text-right"
           >
             <v-btn
               icon
